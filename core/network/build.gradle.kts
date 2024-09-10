@@ -33,6 +33,7 @@ dependencies {
     // retrofit
     api(libs.retrofit)
     api(libs.kotlin.serialization)
+    implementation(libs.retrofit.converter.kotlinx)
 
     // logging
     debugImplementation(libs.okhttp.logging)
