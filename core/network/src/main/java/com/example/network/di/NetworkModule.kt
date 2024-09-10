@@ -3,6 +3,7 @@ package com.example.network.di
 import com.example.network.BuildConfig
 import com.example.network.adapter.NetworkResultCallAdapterFactory
 import com.example.network.common.Constants
+import com.example.network.data.MovieApi
 import com.example.network.interceptor.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
@@ -55,5 +56,11 @@ object NetworkModule {
         okHttpClient: OkHttpClient,
     ): Retrofit {
         return retrofitBuilder.client(okHttpClient).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieApi(retrofit: Retrofit): MovieApi {
+        return retrofit.create(MovieApi::class.java)
     }
 }
