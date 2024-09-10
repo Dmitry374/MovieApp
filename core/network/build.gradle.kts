@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -6,12 +8,27 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+val localPropertiesFile = rootProject.file("local.properties")
+val localProperties = Properties().apply {
+    runCatching {
+        localPropertiesFile.inputStream().use { fis ->
+            load(fis)
+        }
+    }
+}
+
 android {
     namespace = "com.example.network"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+
+        buildConfigField(
+            "String",
+            "API_KEY",
+            "\"${localProperties["API_KEY"]}\""
+        )
     }
 
     compileOptions {

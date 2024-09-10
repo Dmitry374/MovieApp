@@ -1,5 +1,6 @@
 package com.example.network.interceptor
 
+import com.example.network.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
@@ -9,7 +10,7 @@ class ApiKeyInterceptor @Inject constructor() : Interceptor {
         val request = chain.request().newBuilder()
         val originalHttpUrl = chain.request().url
         val newUrl = originalHttpUrl.newBuilder()
-            .addQueryParameter(API_KEY_NAME, "")
+            .addQueryParameter(API_KEY_NAME, BuildConfig.API_KEY)
             .build()
         request.url(newUrl)
         return chain.proceed(request.build())
