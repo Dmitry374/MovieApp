@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -35,4 +36,11 @@ dependencies {
 
     // logging
     debugImplementation(libs.okhttp.logging)
+
+    // coroutines
+    implementation(libs.kotlin.coroutines)
+
+    // di
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.android.compiler)
 }

@@ -23,10 +23,7 @@ android {
 dependencies {
 
     // base
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    // coroutines
-    implementation(libs.kotlin.coroutines)
+    api(libs.androidx.core.ktx)
+    api(libs.androidx.appcompat)
+    api(libs.androidx.lifecycle.runtime.ktx)
 }
