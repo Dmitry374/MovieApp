@@ -1,6 +1,6 @@
 package com.example.network.adapter
 
-import com.example.network.NetworkResult
+import com.example.common.domain.NetworkResult
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

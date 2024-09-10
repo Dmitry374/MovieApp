@@ -1,6 +1,6 @@
 package com.example.network.adapter
 
-import com.example.network.NetworkResult
+import com.example.common.domain.NetworkResult
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
