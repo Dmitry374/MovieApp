@@ -19,12 +19,17 @@ class NetworkResultCallAdapterFactory : CallAdapter.Factory() {
         }
 
         val callType = getParameterUpperBound(0, returnType as ParameterizedType)
-        if (getRawType(callType) != NetworkResult::class.java) {
+        val rawType = getRawType(callType)
+        if (rawType != NetworkResult::class.java) {
             return null
         }
 
         val resultType = getParameterUpperBound(0, callType as ParameterizedType)
-        return NetworkResultCallAdapter(resultType)
+        val resultTypeClass = getRawType(resultType)
+        return NetworkResultCallAdapter(
+            resultType = resultType,
+            resultTypeClass = resultTypeClass
+        )
     }
 
     companion object {

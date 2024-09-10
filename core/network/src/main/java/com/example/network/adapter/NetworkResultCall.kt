@@ -11,12 +11,13 @@ import java.io.IOException
 import java.net.UnknownHostException
 
 class NetworkResultCall<T>(
-    private val proxy: Call<T>
+    private val proxy: Call<T>,
+    private val resultTypeClass: Class<*>
 ) : Call<NetworkResult<T>> {
 
     override fun execute(): Response<NetworkResult<T>> {
         return try {
-            val result = proxy.execute().mapToNetworkResult()
+            val result = proxy.execute().mapToNetworkResult(resultTypeClass)
             Response.success(result)
         } catch (throwable: Throwable) {
             val errorResult = throwable.mapToNetworkResultError()
@@ -27,7 +28,7 @@ class NetworkResultCall<T>(
     override fun enqueue(callback: Callback<NetworkResult<T>>) {
         val wrappingCallback = object : Callback<T> {
             override fun onResponse(call: Call<T>, response: Response<T>) {
-                val result = response.mapToNetworkResult()
+                val result = response.mapToNetworkResult(resultTypeClass)
                 callback.onResponse(this@NetworkResultCall, Response.success(result))
             }
 
@@ -39,7 +40,7 @@ class NetworkResultCall<T>(
         proxy.enqueue(wrappingCallback)
     }
 
-    override fun clone(): Call<NetworkResult<T>> = NetworkResultCall(proxy.clone())
+    override fun clone(): Call<NetworkResult<T>> = NetworkResultCall(proxy.clone(), resultTypeClass)
 
     override fun request(): Request = proxy.request()
 
@@ -51,14 +52,15 @@ class NetworkResultCall<T>(
 
     override fun cancel() = proxy.cancel()
 
-    private fun <T> Response<T>.mapToNetworkResult(): NetworkResult<T> {
+    @Suppress("UNCHECKED_CAST")
+    private fun <T> Response<T>.mapToNetworkResult(paramType: Class<*>): NetworkResult<T> {
         return if (isSuccessful) {
             val body = body()
 
-            if (body != null) {
-                NetworkResult.Success(body)
-            } else {
-                NetworkResult.Error(
+            when {
+                paramType == Unit::class.java -> NetworkResult.Success(Unit as T)
+                body != null -> NetworkResult.Success(body)
+                else -> NetworkResult.Error(
                     isNetworkError = true,
                     errorCode = code(),
                     message = "Response body is empty"
