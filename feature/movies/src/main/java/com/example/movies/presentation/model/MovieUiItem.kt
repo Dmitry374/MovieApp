@@ -1,6 +1,6 @@
-package com.example.model.domain
+package com.example.movies.presentation.model
 
-data class Movie(
+class MovieUiItem(
     val id: Long,
     val title: String,
     val posterUrl: String,

@@ -9,7 +9,7 @@ import com.example.movieapp.navigation.Screen.FAVOURITES_SCREEN
 import com.example.movieapp.navigation.Screen.MOVIES_SCREEN
 import com.example.movieapp.ui.HomeScreen
 import com.example.movies.presentation.FavouritesScreen
-import com.example.movies.presentation.MoviesScreen
+import com.example.movies.presentation.MoviesRoute
 
 @Composable
 fun RootNavigationGraph(navController: NavHostController = rememberNavController()) {
@@ -32,7 +32,9 @@ fun HomeNavGraph(navController: NavHostController) {
         startDestination = MOVIES_SCREEN,
     ) {
         composable(MOVIES_SCREEN) {
-            MoviesScreen()
+            MoviesRoute(
+                onNavigateToDetails = {}
+            )
         }
         composable(FAVOURITES_SCREEN) {
             FavouritesScreen()

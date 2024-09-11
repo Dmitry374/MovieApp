@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @Serializable
 class ReleaseRaw(
-    val id: Int,
+    val id: Long,
     val imdbId: String,
     val isOriginal: Int,
     val posterUrl: String,
@@ -28,17 +28,8 @@ class ReleaseRaw(
                 posterUrl = raw.posterUrl,
                 seasonNumber = raw.seasonNumber,
                 sourceName = raw.sourceName,
-                releaseDate = raw.sourceReleaseDate,
-                type = mapType(raw.type)
+                releaseDate = raw.sourceReleaseDate
             )
-        }
-
-        private fun mapType(type: String): Movie.Type {
-            return when (type) {
-                "movie" -> Movie.Type.MOVIE
-                "tv_series" -> Movie.Type.TV_SERIES
-                else -> Movie.Type.UNKNOWN
-            }
         }
     }
 }
