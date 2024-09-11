@@ -8,7 +8,7 @@ class ReleaseRaw(
     val imdbId: String,
     val isOriginal: Int,
     val posterUrl: String,
-    val seasonNumber: Int,
+    val seasonNumber: Int?,
     val sourceId: Int,
     val sourceName: String,
     val sourceReleaseDate: String,

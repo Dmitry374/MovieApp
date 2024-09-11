@@ -8,8 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.movieapp.navigation.Screen.FAVOURITES_SCREEN
 import com.example.movieapp.navigation.Screen.MOVIES_SCREEN
 import com.example.movieapp.ui.HomeScreen
-import com.example.movies.FavouritesScreen
-import com.example.movies.MoviesScreen
+import com.example.movies.presentation.FavouritesScreen
+import com.example.movies.presentation.MoviesScreen
 
 @Composable
 fun RootNavigationGraph(navController: NavHostController = rememberNavController()) {

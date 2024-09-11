@@ -9,7 +9,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonNamingStrategy
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,6 +22,18 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @OptIn(ExperimentalSerializationApi::class)
+    @Provides
+    @Singleton
+    internal fun provideJsonSerializer(): Json {
+        return Json {
+            ignoreUnknownKeys = true
+            explicitNulls = false
+            namingStrategy = JsonNamingStrategy.SnakeCase
+            isLenient = true
+        }
+    }
 
     @Provides
     @Singleton

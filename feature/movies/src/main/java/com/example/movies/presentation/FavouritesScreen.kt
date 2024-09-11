@@ -1,4 +1,4 @@
-package com.example.movies
+package com.example.movies.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
