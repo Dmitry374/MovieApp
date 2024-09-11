@@ -43,4 +43,8 @@ dependencies {
 
     // coil
     api(libs.coil.compose)
+
+    // navigation
+    api(libs.androidx.navigation)
+    api(libs.androidx.hilt.navigation.compose)
 }
