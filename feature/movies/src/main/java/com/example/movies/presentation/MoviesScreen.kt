@@ -41,7 +41,9 @@ private fun MoviesScreen(
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
 
-            MoviesUiState.Empty -> {}
+            MoviesUiState.Empty -> EmptyScreen(
+                modifier = modifier
+            )
 
             is MoviesUiState.Success -> {
                 SuccessStateScreen(
@@ -50,7 +52,10 @@ private fun MoviesScreen(
                 )
             }
 
-            is MoviesUiState.Error -> {}
+            is MoviesUiState.Error -> ErrorScreen(
+                onRetryAction = uiState.onRetryAction,
+                modifier = modifier
+            )
         }
     }
 }
