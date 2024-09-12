@@ -5,10 +5,7 @@ import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.HttpException
 import retrofit2.Response
-import java.io.IOException
-import java.net.UnknownHostException
 
 class NetworkResultCall<T>(
     private val proxy: Call<T>,
@@ -20,7 +17,7 @@ class NetworkResultCall<T>(
             val result = proxy.execute().mapToNetworkResult(resultTypeClass)
             Response.success(result)
         } catch (throwable: Throwable) {
-            val errorResult = throwable.mapToNetworkResultError()
+            val errorResult = NetworkResult.Error(throwable)
             Response.success(errorResult)
         }
     }
@@ -33,8 +30,8 @@ class NetworkResultCall<T>(
             }
 
             override fun onFailure(call: Call<T>, throwable: Throwable) {
-                val result = throwable.mapToNetworkResultError()
-                callback.onResponse(this@NetworkResultCall, Response.success(result))
+                val errorResult = NetworkResult.Error(throwable)
+                callback.onResponse(this@NetworkResultCall, Response.success(errorResult))
             }
         }
         proxy.enqueue(wrappingCallback)
@@ -60,43 +57,10 @@ class NetworkResultCall<T>(
             when {
                 paramType == Unit::class.java -> NetworkResult.Success(Unit as T)
                 body != null -> NetworkResult.Success(body)
-                else -> NetworkResult.Error(
-                    isNetworkError = true,
-                    errorCode = code(),
-                    message = "Response body is empty"
-                )
+                else -> NetworkResult.Error(Throwable("Response body is empty"))
             }
         } else {
-            NetworkResult.Error(isNetworkError = true, errorCode = code(), message = message())
-        }
-    }
-
-    private fun Throwable.mapToNetworkResultError(): NetworkResult.Error {
-        return when (this) {
-            is HttpException -> {
-                NetworkResult.Error(
-                    isNetworkError = true,
-                    errorCode = this.code(),
-                    message = this.localizedMessage
-                )
-            }
-
-            is UnknownHostException,
-            is IOException -> {
-                NetworkResult.Error(
-                    isNetworkError = true,
-                    errorCode = null,
-                    message = this.localizedMessage
-                )
-            }
-
-            else -> {
-                NetworkResult.Error(
-                    isNetworkError = false,
-                    errorCode = null,
-                    message = this.localizedMessage
-                )
-            }
+            NetworkResult.Error(Throwable(message()))
         }
     }
 }

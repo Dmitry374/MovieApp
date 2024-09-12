@@ -36,7 +36,7 @@ class DetailsViewModel @Inject constructor(
                         detailsUiStateMapper.map(detail)
                             .also(_detailsStateFlow::tryEmit)
                     }
-                    .onError { _, _, _ ->
+                    .onError {
                         _detailsStateFlow.tryEmit(
                             DetailsUiState.Error(::getMovieDetail)
                         )

@@ -33,7 +33,7 @@ class MoviesViewModel @Inject constructor(
                     moviesUiStateMapper.map(movies)
                         .also(_moviesStateFlow::tryEmit)
                 }
-                .onError { _, _, _ ->
+                .onError {
                     _moviesStateFlow.tryEmit(
                         MoviesUiState.Error(::getMovies)
                     )

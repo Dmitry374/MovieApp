@@ -11,9 +11,9 @@ suspend fun <T> NetworkResult<T>.onSuccess(
 }
 
 suspend fun <T> NetworkResult<T>.onError(
-    executable: suspend (isNetworkError: Boolean, code: Int?, message: String?) -> Unit
+    executable: suspend (throwable: Throwable) -> Unit
 ): NetworkResult<T> = apply {
     if (this is NetworkResult.Error) {
-        executable(isNetworkError, errorCode, message)
+        executable(throwable)
     }
 }
