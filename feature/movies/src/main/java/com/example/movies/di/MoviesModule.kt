@@ -1,6 +1,6 @@
 package com.example.movies.di
 
-import com.example.movies.data.MoviesRepositoryIml
+import com.example.movies.data.MoviesRepositoryImpl
 import com.example.movies.domain.MoviesRepository
 import dagger.Binds
 import dagger.Module
@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 interface MoviesModule {
 
     @Binds
-    fun bindMoviesRepository(repository: MoviesRepositoryIml): MoviesRepository
+    fun bindMoviesRepository(repository: MoviesRepositoryImpl): MoviesRepository
 }

@@ -1,4 +1,4 @@
-package com.example.network.data.model
+package com.example.network.data.model.release
 
 import com.example.model.domain.Movie
 import com.example.network.data.mapper.NetworkResultMapper
@@ -8,17 +8,11 @@ import javax.inject.Inject
 @Serializable
 class ReleaseRaw(
     val id: Long,
-    val imdbId: String,
-    val isOriginal: Int,
     val posterUrl: String,
     val seasonNumber: Int?,
-    val sourceId: Int,
     val sourceName: String,
     val sourceReleaseDate: String,
-    val title: String,
-    val tmdbId: Int,
-    val tmdbType: String,
-    val type: String
+    val title: String
 ) {
     class ReleaseRawMapper @Inject constructor() : NetworkResultMapper<ReleaseRaw, Movie>() {
         override fun map(raw: ReleaseRaw): Movie {

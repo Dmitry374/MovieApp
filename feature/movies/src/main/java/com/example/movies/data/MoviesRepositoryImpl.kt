@@ -5,10 +5,10 @@ import com.example.model.domain.Movie
 import com.example.movies.domain.MoviesRepository
 import com.example.network.data.MovieApi
 import com.example.network.data.extensions.map
-import com.example.network.data.model.ReleasesResponse
+import com.example.network.data.model.release.ReleasesResponse
 import javax.inject.Inject
 
-class MoviesRepositoryIml @Inject constructor(
+class MoviesRepositoryImpl @Inject constructor(
     private val movieApi: MovieApi,
     private val mapper: ReleasesResponse.ReleasesResponseMapper
 ) : MoviesRepository {

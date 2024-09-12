@@ -1,4 +1,4 @@
-package com.example.network.data.model
+package com.example.network.data.model.release
 
 import com.example.model.domain.Movie
 import com.example.network.data.mapper.NetworkResultMapper

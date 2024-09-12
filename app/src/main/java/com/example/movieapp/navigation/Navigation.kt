@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.example.details.DetailsScreen
+import com.example.details.presentation.DetailsRoute
 import com.example.movieapp.navigation.Screen.DETAILS_SCREEN
 import com.example.movieapp.navigation.Screen.FAVOURITES_SCREEN
 import com.example.movieapp.navigation.Screen.MOVIES_SCREEN
@@ -55,7 +55,7 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
         startDestination = DETAILS_SCREEN
     ) {
         composable(DETAILS_SCREEN) {
-            DetailsScreen()
+            DetailsRoute()
         }
     }
 }
