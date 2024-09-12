@@ -13,7 +13,8 @@ sealed interface DetailsUiState {
         val description: String,
         val rating: Double?,
         val genres: List<String>,
-        val runtimeMinutes: Int?
+        val runtimeMinutes: Int?,
+        val isFavorite: Boolean
     ) : DetailsUiState
 
     data class Error(val onRetryAction: () -> Unit) : DetailsUiState

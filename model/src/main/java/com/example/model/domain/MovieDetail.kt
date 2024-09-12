@@ -9,5 +9,6 @@ data class MovieDetail(
     val description: String,
     val rating: Double?,
     val genreNames: List<String>,
-    val runtimeMinutes: Int?
+    val runtimeMinutes: Int?,
+    val isFavorite: Boolean
 )

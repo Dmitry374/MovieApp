@@ -1,8 +1,10 @@
 package com.example.details.domain
 
-import com.example.common.domain.NetworkResult
 import com.example.model.domain.MovieDetail
+import kotlinx.coroutines.flow.Flow
 
 interface DetailsRepository {
-    suspend fun getMovieDetail(titleId: Long): NetworkResult<MovieDetail>
+    fun listenMovieDetails(titleId: Long): Flow<MovieDetail>
+    suspend fun addFavorite(movieDetail: MovieDetail)
+    suspend fun deleteFavorite(titleId: Long)
 }

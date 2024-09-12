@@ -16,7 +16,23 @@ class DetailsUiStateMapper @Inject constructor() {
             description = detail.description,
             rating = detail.rating,
             genres = detail.genreNames,
-            runtimeMinutes = detail.runtimeMinutes
+            runtimeMinutes = detail.runtimeMinutes,
+            isFavorite = detail.isFavorite
+        )
+    }
+
+    fun map(uiState: DetailsUiState.Success): MovieDetail {
+        return MovieDetail(
+            id = uiState.id,
+            title = uiState.title,
+            poster = uiState.posterUrl,
+            backdrop = uiState.backdropUrl,
+            releaseDate = uiState.releaseDate,
+            description = uiState.description,
+            rating = uiState.rating,
+            genreNames = uiState.genres,
+            runtimeMinutes = uiState.runtimeMinutes,
+            isFavorite = uiState.isFavorite
         )
     }
 }

@@ -18,7 +18,7 @@ interface MoviesDao {
     fun listenFavoriteMovies(): Flow<List<FavoriteMoviesDb>>
 
     @Query("SELECT EXISTS(SELECT id FROM favoritemovies WHERE id = :id)")
-    suspend fun isFavoriteMovie(id: Long): Boolean
+    fun listenIsFavoriteMovie(id: Long): Flow<Boolean>
 
     @Query("DELETE FROM favoritemovies WHERE id = :id")
     suspend fun deleteFavoriteById(id: Long)

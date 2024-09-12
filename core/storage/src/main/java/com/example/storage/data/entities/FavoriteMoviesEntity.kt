@@ -9,12 +9,7 @@ data class FavoriteMoviesEntity(
     @PrimaryKey val id: Long,
     val title: String,
     val poster: String,
-    val backdrop: String?,
-    val releaseDate: String,
-    val description: String,
-    val rating: Double?,
-    val genreNames: List<String>,
-    val runtimeMinutes: Int?
+    val releaseDate: String
 ) {
     companion object {
         const val TABLE_NAME = "FavoriteMovies"

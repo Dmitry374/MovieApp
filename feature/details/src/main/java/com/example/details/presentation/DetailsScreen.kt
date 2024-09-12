@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.details.presentation.model.DetailsUiState
 import com.example.composables.ErrorScreen
+import com.example.details.presentation.model.DetailsUiState
 
 @Composable
 fun DetailsRoute(
@@ -22,7 +22,7 @@ fun DetailsRoute(
     DetailsScreen(
         uiState = uiState,
         onBackClick = onBackClick,
-        onFavouriteClick = {},
+        onFavouriteClick = viewModel::onFavoriteClick,
         modifier = modifier
     )
 }
@@ -50,7 +50,7 @@ private fun DetailsScreen(
                     releaseDate = uiState.releaseDate,
                     rating = uiState.rating,
                     runtime = uiState.runtimeMinutes,
-                    isFavorite = false,
+                    isFavorite = uiState.isFavorite,
                     onBackClick = onBackClick,
                     onFavouriteClick = { onFavouriteClick(uiState) }
                 )
