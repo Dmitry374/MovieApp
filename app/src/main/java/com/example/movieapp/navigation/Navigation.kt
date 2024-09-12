@@ -8,11 +8,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.details.presentation.DetailsRoute
+import com.example.favorites.presentation.FavoritesRoute
 import com.example.movieapp.navigation.Screen.DETAILS_SCREEN
 import com.example.movieapp.navigation.Screen.FAVOURITES_SCREEN
 import com.example.movieapp.navigation.Screen.MOVIES_SCREEN
 import com.example.movieapp.ui.HomeScreen
-import com.example.movies.presentation.FavouritesScreen
 import com.example.movies.presentation.MoviesRoute
 
 @Composable
@@ -43,7 +43,9 @@ fun HomeNavGraph(navController: NavHostController) {
             )
         }
         composable(FAVOURITES_SCREEN) {
-            FavouritesScreen()
+            FavoritesRoute(
+                onNavigateToDetails = {}
+            )
         }
         detailsNavGraph(navController = navController)
     }
