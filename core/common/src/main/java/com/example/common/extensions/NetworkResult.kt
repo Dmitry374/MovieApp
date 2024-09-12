@@ -17,3 +17,10 @@ suspend fun <T> NetworkResult<T>.onError(
         executable(throwable)
     }
 }
+
+fun <T> NetworkResult<T>.getResult(): T {
+    return when (this) {
+        is NetworkResult.Success -> data
+        is NetworkResult.Error -> throw throwable
+    }
+}
