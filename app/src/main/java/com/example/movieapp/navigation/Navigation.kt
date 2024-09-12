@@ -55,7 +55,11 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
         startDestination = DETAILS_SCREEN
     ) {
         composable(DETAILS_SCREEN) {
-            DetailsRoute()
+            DetailsRoute(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

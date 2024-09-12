@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.composables.EmptyScreen
+import com.example.composables.ErrorScreen
 import com.example.movies.presentation.model.MovieUiItem
 import com.example.movies.presentation.model.MoviesUiState
 

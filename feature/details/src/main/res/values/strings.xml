@@ -1,0 +1,6 @@
+<resources>
+    <string name="details">Details</string>
+    <string name="runtime">%d minutes</string>
+    <string name="unknown">Unknown</string>
+    <string name="description">Description</string>
+</resources>
