@@ -12,8 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -67,26 +65,18 @@ fun MoviesBottomBar(navController: NavHostController) {
 
     if (bottomBarDestination) {
         NavigationBar(
-            modifier = Modifier.height(80.dp),
-            containerColor = Color.Black.copy(alpha = 0.8f),
+            modifier = Modifier.height(80.dp)
         ) {
             menuItems.forEach { topLevelRoute ->
-                val isSelectedMenu =
-                    currentDestination?.hierarchy?.any { it.route == topLevelRoute.route } == true
-                val backgroundAlpha = if (isSelectedMenu) 1f else 0.6f
 
                 NavigationBarItem(
                     label = {
-                        Text(
-                            text = topLevelRoute.title,
-                            color = Color.White.copy(alpha = backgroundAlpha)
-                        )
+                        Text(text = topLevelRoute.title)
                     },
                     icon = {
                         Icon(
                             painterResource(id = topLevelRoute.icon),
-                            contentDescription = topLevelRoute.title,
-                            modifier = Modifier.graphicsLayer(alpha = backgroundAlpha)
+                            contentDescription = topLevelRoute.title
                         )
                     },
                     selected = currentDestination?.hierarchy?.any { it.route == topLevelRoute.route } == true,

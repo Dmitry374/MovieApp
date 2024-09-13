@@ -2,4 +2,5 @@
 <resources>
     <color name="rating_text_color">#FFFFEB3B</color>
     <color name="rating_background">#52252836</color>
+    <color name="favorite">#FF1414</color>
 </resources>

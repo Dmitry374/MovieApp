@@ -44,7 +44,9 @@ fun HomeNavGraph(navController: NavHostController) {
         }
         composable(FAVOURITES_SCREEN) {
             FavoritesRoute(
-                onNavigateToDetails = {}
+                onNavigateToDetails = { titleId ->
+                    navController.navigate(route = Graph.DETAILS + "/$titleId")
+                }
             )
         }
         detailsNavGraph(navController = navController)

@@ -73,13 +73,11 @@ fun DetailsMovieContent(
                     onBackClick()
                 },
                 painter = painterResource(id = R.drawable.ic_arrow_left),
-                contentDescription = null,
-                tint = Color.Black,
+                contentDescription = null
             )
 
             Text(
                 text = stringResource(R.string.details),
-                color = Color.Black,
                 fontSize = 20.sp,
                 fontWeight = FontWeight(600),
                 fontFamily = FontFamily(Font(UiResR.font.googlesans_regular, FontWeight.Normal)),
@@ -92,7 +90,7 @@ fun DetailsMovieContent(
                 },
                 painter = painterResource(id = if (isFavorite) R.drawable.ic_love else R.drawable.ic_love_border),
                 contentDescription = null,
-                tint = Color.Black,
+                tint = colorResource(R.color.favorite),
             )
         }
 
@@ -267,7 +265,6 @@ fun HorizontalThreeOptions(
         // Release date
         Text(
             text = releaseDate,
-            color = Color.Black,
             fontSize = 14.sp,
             fontWeight = FontWeight(600),
             fontFamily = FontFamily(Font(UiResR.font.googlesans_regular, FontWeight.Normal)),
@@ -288,7 +285,6 @@ fun HorizontalThreeOptions(
             // Duration
             Text(
                 text = stringResource(R.string.runtime, duration),
-                color = Color.Black,
                 fontSize = 14.sp,
                 fontWeight = FontWeight(600),
                 fontFamily = FontFamily(Font(UiResR.font.googlesans_regular, FontWeight.Normal)),
@@ -317,7 +313,6 @@ fun HorizontalThreeOptions(
         // Genre
         Text(
             text = genre,
-            color = Color.Black,
             fontSize = 14.sp,
             fontWeight = FontWeight(600),
             fontFamily = FontFamily(Font(UiResR.font.googlesans_regular, FontWeight.Normal)),

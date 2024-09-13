@@ -19,6 +19,8 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.common.utils.convertDateToFormattedString
 import com.example.movies.R
+import com.example.ui.R as UiResR
 
 @Composable
 fun HorizontalMovieItem(
@@ -78,19 +81,37 @@ fun HorizontalMovieItem(
                     maxLines = 2,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    fontFamily = FontFamily(
+                        Font(
+                            UiResR.font.googlesans_regular,
+                            FontWeight.Normal
+                        )
+                    ),
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
                 if (seasonNumber != null) {
                     Text(
                         text = stringResource(R.string.season_number, seasonNumber),
+                        fontFamily = FontFamily(
+                            Font(
+                                UiResR.font.googlesans_regular,
+                                FontWeight.Normal
+                            )
+                        ),
                         fontSize = 14.sp
                     )
                 }
 
                 Text(
                     text = convertDateToFormattedString(releaseDate),
+                    fontFamily = FontFamily(
+                        Font(
+                            UiResR.font.googlesans_regular,
+                            FontWeight.Normal
+                        )
+                    ),
                     fontSize = 14.sp
                 )
 
@@ -98,6 +119,12 @@ fun HorizontalMovieItem(
 
                 Text(
                     text = sourceName,
+                    fontFamily = FontFamily(
+                        Font(
+                            UiResR.font.googlesans_regular,
+                            FontWeight.Normal
+                        )
+                    ),
                     fontSize = 14.sp
                 )
             }
