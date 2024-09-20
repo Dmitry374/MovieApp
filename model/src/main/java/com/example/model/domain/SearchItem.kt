@@ -1,8 +1,8 @@
 package com.example.model.domain
 
-data class SearchResultItem(
+data class SearchItem(
     val id: Long,
     val name: String,
     val imageUrl: String,
-    val year: Int
+    val year: String
 )

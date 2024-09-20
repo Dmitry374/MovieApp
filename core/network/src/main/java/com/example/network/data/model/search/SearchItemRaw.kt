@@ -1,21 +1,21 @@
 package com.example.network.data.model.search
 
-import com.example.model.domain.SearchResultItem
+import com.example.model.domain.SearchItem
 import com.example.network.data.mapper.NetworkResultMapper
 import kotlinx.serialization.Serializable
 import javax.inject.Inject
 
 @Serializable
-class SearchResultItemRaw(
+class SearchItemRaw(
     val id: Long,
     val name: String,
     val imageUrl: String,
-    val year: Int
+    val year: String
 ) {
-    class SearchResultItemRawMapper @Inject constructor() :
-        NetworkResultMapper<SearchResultItemRaw, SearchResultItem>() {
-        override fun map(raw: SearchResultItemRaw): SearchResultItem {
-            return SearchResultItem(
+    class SearchItemRawMapper @Inject constructor() :
+        NetworkResultMapper<SearchItemRaw, SearchItem>() {
+        override fun map(raw: SearchItemRaw): SearchItem {
+            return SearchItem(
                 id = raw.id,
                 name = raw.name,
                 imageUrl = raw.imageUrl,

@@ -5,14 +5,14 @@ import com.example.movies.presentation.model.MovieUiItem
 import com.example.movies.presentation.model.MoviesUiState
 import javax.inject.Inject
 
-class MoviesUiStateMapper @Inject constructor() {
+class MoviesUiItemMapper @Inject constructor() {
 
     fun map(movies: List<Movie>): MoviesUiState {
-        val uiItems = mapMovies(movies)
-        return if (uiItems.isEmpty()) {
-            MoviesUiState.Empty
+        return if (movies.isNotEmpty()) {
+            val uiItems = mapMovies(movies)
+            MoviesUiState.Movies(uiItems)
         } else {
-            MoviesUiState.Success(uiItems)
+            MoviesUiState.Empty
         }
     }
 

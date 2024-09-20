@@ -2,7 +2,7 @@ package com.example.movies.data
 
 import com.example.common.domain.NetworkResult
 import com.example.model.domain.Movie
-import com.example.model.domain.SearchResultItem
+import com.example.model.domain.SearchItem
 import com.example.movies.domain.MoviesRepository
 import com.example.network.data.MovieApi
 import com.example.network.data.extensions.map
@@ -20,7 +20,7 @@ class MoviesRepositoryImpl @Inject constructor(
         return movieApi.getReleases().map(releasesResponseMapper)
     }
 
-    override suspend fun searchMovies(query: String): NetworkResult<List<SearchResultItem>> {
+    override suspend fun searchMovies(query: String): NetworkResult<List<SearchItem>> {
         return movieApi.searchMovies(query).map(searchResponseMapper)
     }
 }

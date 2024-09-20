@@ -1,3 +1,4 @@
 <resources>
     <string name="season_number">Season %d</string>
+    <string name="search">Search</string>
 </resources>

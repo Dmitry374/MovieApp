@@ -1,19 +1,19 @@
 package com.example.network.data.model.search
 
-import com.example.model.domain.SearchResultItem
+import com.example.model.domain.SearchItem
 import com.example.network.data.mapper.NetworkResultMapper
 import kotlinx.serialization.Serializable
 import javax.inject.Inject
 
 @Serializable
 class SearchResponse(
-    val results: List<SearchResultItemRaw>
+    val results: List<SearchItemRaw>
 ) {
     class SearchResponseMapper @Inject constructor(
-        private val searchResultItemRawMapper: SearchResultItemRaw.SearchResultItemRawMapper
-    ) : NetworkResultMapper<SearchResponse, List<SearchResultItem>>() {
-        override fun map(raw: SearchResponse): List<SearchResultItem> {
-            return raw.results.map(searchResultItemRawMapper::map)
+        private val searchItemRawMapper: SearchItemRaw.SearchItemRawMapper
+    ) : NetworkResultMapper<SearchResponse, List<SearchItem>>() {
+        override fun map(raw: SearchResponse): List<SearchItem> {
+            return raw.results.map(searchItemRawMapper::map)
         }
     }
 }
