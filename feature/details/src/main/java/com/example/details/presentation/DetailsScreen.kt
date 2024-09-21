@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.composables.ErrorScreen
@@ -34,7 +35,9 @@ private fun DetailsScreen(
     onFavouriteClick: (DetailsUiState.Success) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(modifier = modifier
+        .fillMaxSize()
+        .testTag("details_screen")) {
         when (uiState) {
             DetailsUiState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -19,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -60,14 +62,17 @@ private fun MoviesScreen(
     onClearQuery: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier.fillMaxSize()) {
-
-
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .testTag("movies_screen_container")
+    ) {
         Spacer(modifier = Modifier.height(16.dp))
         SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 16.dp)
+                .testTag("search_bar"),
             query = searchQuery,
             onQueryChange = onQueryChange,
             onSearch = onQueryChange,
@@ -140,6 +145,7 @@ private fun MoviesStateScreen(
     onNavigateToDetails: (Long) -> Unit
 ) {
     LazyColumn(
+        modifier = Modifier.testTag("movies_list"),
         content = {
             items(movies) {
                 HorizontalMovieItem(
@@ -161,13 +167,16 @@ private fun SearchResultStateScreen(
     onNavigateToDetails: (Long) -> Unit
 ) {
     LazyColumn(
+        modifier = Modifier
+            .testTag("search_result_lazy_list"),
         content = {
-            items(searchItems) {
+            itemsIndexed(searchItems) { index, item ->
                 HorizontalSearchItem(
-                    name = it.name,
-                    imageUrl = it.imageUrl,
-                    year = it.year,
-                    onClick = { onNavigateToDetails(it.id) }
+                    name = item.name,
+                    imageUrl = item.imageUrl,
+                    year = item.year,
+                    testTag = "search_item_$index",
+                    onClick = { onNavigateToDetails(item.id) },
                 )
             }
         }

@@ -17,7 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -27,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.movies.R
+import com.example.semantics.imageUrlProperty
 import com.example.ui.R as UiResR
 
 @Composable
@@ -34,13 +37,15 @@ fun HorizontalSearchItem(
     name: String,
     imageUrl: String,
     year: String,
-    onClick: () -> Unit
+    testTag: String,
+    onClick: () -> Unit,
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .testTag(testTag),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
@@ -62,7 +67,11 @@ fun HorizontalSearchItem(
                         model = imageUrl,
                         contentDescription = null,
                         placeholder = painterResource(R.drawable.ic_placeholder_movie),
-                        modifier = Modifier.fillMaxHeight()
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .semantics {
+                                imageUrlProperty = imageUrl
+                            }
                     )
                 }
             }
@@ -74,6 +83,7 @@ fun HorizontalSearchItem(
             ) {
                 Text(
                     text = name,
+                    modifier = Modifier.testTag("search_item_name"),
                     maxLines = 2,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
@@ -89,6 +99,7 @@ fun HorizontalSearchItem(
 
                 Text(
                     text = year,
+                    modifier = Modifier.testTag("search_item_year"),
                     fontFamily = FontFamily(
                         Font(
                             UiResR.font.googlesans_regular,
@@ -109,6 +120,7 @@ private fun HorizontalSearchItemPreview() {
         name = "Fast & Furious X",
         imageUrl = "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg",
         year = "2023",
+        testTag = "search_item_0",
         onClick = {}
     )
 }
