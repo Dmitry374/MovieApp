@@ -13,6 +13,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -42,19 +43,17 @@ class MoviesViewModel @Inject constructor(
 
     fun onClearQuery() {
         _searchQuery.tryEmit("")
+        getMovies()
     }
 
     @OptIn(FlowPreview::class)
     private fun listenSearchQuery() {
         _searchQuery
             .debounce(500L)
+            .filter { it.isNotEmpty() }
             .onEach { query ->
                 _moviesStateFlow.tryEmit(MoviesUiState.Loading)
-                if (query.isEmpty()) {
-                    getMovies()
-                } else {
-                    searchMovies(query)
-                }
+                searchMovies(query)
             }
             .launchIn(viewModelScope)
     }
@@ -79,6 +78,7 @@ class MoviesViewModel @Inject constructor(
     }
 
     private fun getMovies() {
+        _moviesStateFlow.tryEmit(MoviesUiState.Loading)
         viewModelScope.launch {
             repository.getMovies()
                 .onSuccess { movies ->

@@ -1,5 +1,6 @@
 package com.example.movies.presentation.mapper
 
+import com.example.common.utils.convertDateToFormattedString
 import com.example.model.domain.Movie
 import com.example.movies.presentation.model.MovieUiItem
 import com.example.movies.presentation.model.MoviesUiState
@@ -25,7 +26,7 @@ class MoviesUiItemMapper @Inject constructor() {
             posterUrl = movie.posterUrl,
             seasonNumber = movie.seasonNumber,
             sourceName = movie.sourceName,
-            releaseDate = movie.releaseDate
+            releaseDate = convertDateToFormattedString(movie.releaseDate)
         )
     }
 }

@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.common.utils.convertDateToFormattedString
 import com.example.movies.R
 import com.example.ui.R as UiResR
 
@@ -105,7 +104,7 @@ fun HorizontalMovieItem(
                 }
 
                 Text(
-                    text = convertDateToFormattedString(releaseDate),
+                    text = releaseDate,
                     fontFamily = FontFamily(
                         Font(
                             UiResR.font.googlesans_regular,
@@ -140,7 +139,7 @@ fun HorizontalMovieItemFilmPreview() {
         imageUrl = "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg",
         seasonNumber = null,
         sourceName = "Netflix",
-        releaseDate = "2024-11-19",
+        releaseDate = "19 November 2024",
         onClick = {}
     )
 }
@@ -153,7 +152,7 @@ fun HorizontalMovieItemTvSeriesPreview() {
         imageUrl = "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg",
         seasonNumber = 2,
         sourceName = "Netflix",
-        releaseDate = "2005-05-11",
+        releaseDate = "11 May 2005",
         onClick = {}
     )
 }
