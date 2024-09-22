@@ -46,9 +46,6 @@ dependencies {
 
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
-    implementation(project(":core:network"))
-    implementation(project(":core:storage"))
-    implementation(project(":model"))
     implementation(project(":feature:movies"))
     implementation(project(":feature:favorites"))
     implementation(project(":feature:details"))

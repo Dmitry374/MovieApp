@@ -19,8 +19,3 @@ android {
         jvmTarget = "1.8"
     }
 }
-
-dependencies {
-
-    implementation(project(":core:common"))
-}
