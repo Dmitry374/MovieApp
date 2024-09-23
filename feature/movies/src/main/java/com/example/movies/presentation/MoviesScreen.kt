@@ -81,13 +81,15 @@ private fun MoviesScreen(
             placeholder = { Text(stringResource(R.string.search)) },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
             trailingIcon = {
-                Icon(
-                    modifier = Modifier.clickable {
-                        onClearQuery()
-                    },
-                    imageVector = Icons.Default.Close,
-                    contentDescription = null
-                )
+                if (searchQuery.isNotBlank()) {
+                    Icon(
+                        modifier = Modifier.clickable {
+                            onClearQuery()
+                        },
+                        imageVector = Icons.Default.Close,
+                        contentDescription = null
+                    )
+                }
             }
         ) {
 
